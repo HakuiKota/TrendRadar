@@ -1,0 +1,20 @@
+name: 每日9点定时任务
+on:
+  # 定时触发：UTC时间1点 = 北京时间9点
+  schedule:
+    - cron: '0 1 * * *'
+  # 支持手动触发测试
+  workflow_dispatch:
+
+jobs:
+  run-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 执行任务并推送Bark通知
+        env:
+          BARK_URL: ${{ secrets.BARK_URL }}
+        run: |
+          # 这里替换成你要执行的实际任务命令（比如拉取热点、运行分析等）
+          echo "每日9点任务执行完成"
+          # 发送Bark推送
+          curl -X POST "$BARK_URL/每日9点任务已完成"
