@@ -13,7 +13,7 @@ jobs:
       - name: 直接推送Bark通知（测试用）
         run: |
           # 👇 只需要把下面的URL替换成你自己的Bark推送URL（浏览器测试成功的那个）
-          curl "https://api.day.app/你的Bark设备码/测试成功！"
+          curl "https://api.day.app/JrnUHe8VTuiWWj7TqdYgvg/测试成功！"
           
           # 👇 测试成功后，想换回Secrets，就删除上面的curl，用下面这行（记得先配置好BARK_URL Secrets）
           # curl "$BARK_URL/每日9点任务已执行"
