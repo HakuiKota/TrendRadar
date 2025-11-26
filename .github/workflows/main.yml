@@ -1,15 +1,19 @@
 name: 每日9点定时任务
 on:
+  # 定时触发：UTC时间1点 = 北京时间9点
   schedule:
-    - cron: '0 1 * * *'  # 二级缩进（跟在on:后）
-  workflow_dispatch:     # 二级缩进
+    - cron: '0 1 * * *'
+  # 支持手动触发
+  workflow_dispatch:
+
 jobs:
-  run-task:              # 二级缩进
-    runs-on: ubuntu-latest  # 三级缩进
-    steps:                 # 三级缩进
-      - name: 执行任务并推送通知  # 四级缩进
-        env:                   # 四级缩进
-          BARK_URL: ${{ secrets.BARK_URL }}  # 五级缩进
-        run: |                 # 四级缩进
+  run-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 执行任务并推送Bark通知
+        env:
+          BARK_URL: ${{ secrets.BARK_URL }}
+        run: |
           echo "每日9点任务执行完成"
-          curl -X POST "$BARK_URL/每日9点任务已完成"
+          # 发送Bark推送
+          curl -X POST "$BARK_URL/每日9点定时任务已执行"
